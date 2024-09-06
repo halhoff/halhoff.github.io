@@ -146,8 +146,8 @@ function calculate(input) {
 }
 
 try {
-    const answer = evaluate(input);
-    document.getElementById("answer").textContent = `result: $(calculate(input)}`;
+    var answer = calculate(input);
+    document.getElementById("answer").textContent = `result: $(answer)`;
 }
 catch (error) {
     document.getElementById("answer").textContent = `invalid expression`;
