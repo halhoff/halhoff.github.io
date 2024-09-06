@@ -145,5 +145,12 @@ function calculate(input) {
     return evaluate(input);
 }
 
+try {
+    const answer = evaluate(input);
+    document.getElementById("answer").textContent = `result: $(calculate(input)}`;
+}
+catch (error) {
+    document.getElementById("answer").textContent = `invalid expression`;
+}
+
 const input = document.getElementById("input").value;
-document.getElementById("answer").textContent = `Result: ${calculate(input)}`;
