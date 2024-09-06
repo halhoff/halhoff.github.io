@@ -145,8 +145,5 @@ function calculate(input) {
     return evaluate(input);
 }
 
-const input = "2+3+3+3+3+3"
-const answer = calculate(input);
-
 const input = document.getElementById("input").value;
-document.getElementById("answer").textContent = `Result: ${calculate(string)}`;
+document.getElementById("answer").textContent = `Result: ${calculate(input)}`;
