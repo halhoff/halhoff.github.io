@@ -1,156 +1,171 @@
-function calculate(input) {
+function calculate(expression, printResult) {
 
-    // checks if input is blank and throws error if so
-    if (input === "") {
-        throw new Error("input cannot be empty");
-    }
+    try {
 
-    // check if input has invalid characters
-    function validInput(input) {
-        const validChars = new Set('0123456789()[]{}+-*/^ ');
-        for (let i = 0; i < input.length; ++i) {
-            if (!validChars.has(input[i])) {
-                return false;
-            }
+        // checks if digit is a digit
+        function isDigit(digit) {
+            return '0' <= digit && digit <= '9';
         }
-        return true;
-    }
 
-    // checks if input has valid parentheses
-    function validParentheses(input) {
-        let stack = [];
-        for (let i = 0; i < input.length; ++i) {
-            if (input[i] === '(' || input[i] === '[' || input[i] === '{') {
-                stack.push(input[i]);
-            }
-            else if (input[i] === ')') {
-                if (stack.empty || stack.pop() !== '(') {
+        // check if expression has invalid characters
+        function validExpression(expression) {
+            const validChars = new Set('0123456789.()+-*/^ ');
+            for (let i = 0; i < expression.length; ++i) {
+                if (!validChars.has(expression[i])) {
                     return false;
                 }
-                stack.pop();
             }
-            else if (input[i] === ']') {
-                if (stack.empty || stack.pop() !== '[') {
-                    return false;
+            return true;
+        }
+
+        // checks if expression has valid parentheses
+        function validParentheses(expression) {
+            let stack = [];
+            for (let i = 0; i < expression.length; ++i) {
+                if (expression[i] === '(') {
+                    stack.push(expression[i]);
                 }
-                stack.pop();
+                else if (expression[i] === ')') {
+                    if (stack.length === 0 || stack[stack.length - 1] !== '(') {
+                        return false;
+                    }
+                    stack.pop();
+                }
             }
-            else if (input[i] === '}') {
-                if (stack.empty || stack.pop() !== '{') {
-                    return false;
-                }
-                stack.pop();
+            return stack.length === 0;
+        }
+
+        // for prioritizing multiplication over addition
+        function pemdas(operator) {
+            if (operator === '+' || operator === '-') return 1;
+            if (operator === '*' || operator === '/') return 2;
+            if (operator === '^') return 3;
+            return 0;
+        }
+
+        // expression two numbers and operator, outputs number
+        function applyOperator(operator, b, a) {
+            switch (operator) {
+                case '+': return a + b;
+                case '-': return a - b;
+                case '*': return a * b;
+                case '/':
+                    if (b === 0) throw new Error("Undefined");
+                    return a / b;
+                case '^':
+                    if (a === 0 && b === 0) throw new Error("Undefined");
+                    return a ** b;
             }
         }
-        return true;
-    }
-
-    // for prioritizing multiplication over addition
-    function pemdas(operator) {
-        if (operator === '+' || operator === '-') return 1;
-        if (operator === '*' || operator === '/') return 2;
-        if (operator === '^') return 3;
-        return 0;
-    }
-
-    // input two numbers and operator, outputs number
-    function applyOperator(operator, b, a) {
-        switch (operator) {
-            case '+': return a + b;
-            case '-': return a - b;
-            case '*': return a * b;
-            case '/': return a / b;
-            case '^': return a ** b;
-        }
-    }
-    
-    // main function
-    function evaluate(input) {
-        let values = [];
-        let operators = [];
-        let i = 0;
-        while (i < input.length) {
-            // eliminating white space
-            if (input[i] === ' ') {
-                ++i;
-                continue;
-            }
-            // returns val of current number
-            if ('0' <= input[i] && input[i] <= '9') {
-                let val = 0;
-                while (i < input.length && '0' <= input[i] && input[i] <= '9') {
-                    val = (val * 10) + (input[i] - '0');
+        
+        // main function
+        function evaluate(expression) {
+            let values = [];
+            let operators = [];
+            let i = 0;
+            while (i < expression.length) {
+                // eliminating white space
+                if (expression[i] === ' ') {
                     ++i;
+                    continue;
                 }
-                values.push(val);
-                --i;
-            }
-            else if (input[i] === '(') {
-                operators.push(input[i]);
-            }
-            // calculates expression inside parentheses
-            else if (input[i] === ')') {
-                while (operators.length && operators[operators.length - 1] !== '(') {
-                    values.push(applyOperator(operators.pop(), values.pop(), values.pop()));
+                // differentiates between - as an operator vs sign
+                else if (expression[i] === '-' && (i === 0 || !isDigit(expression[i - 1]) && expression[i - 1] !== ')')) {
+                    let val = 0;
+                    let decimal = 0;
+                    let tens = 10;
+                    ++i;
+                    if (expression[i] === '(') {
+                        operators.push('-');
+                    }
+                    else {
+                        while (i < expression.length && (isDigit(expression[i]) || expression[i] == '.')) {
+                            // expression[i] is .
+                            if (expression[i] === '.') {
+                                decimal = 1;
+                            }
+                            else if (isDigit(expression[i]) && decimal === 0) {
+                                val = (val * 10) + (expression[i] - '0');
+                            }
+                            else if (isDigit(expression[i]) && decimal === 1) {
+                                val += expression[i] / tens;
+                                tens *= 10;
+                            }
+                            ++i;
+                        }
+                    }
+                    values.push(-val);
+                    --i;
                 }
-                operators.pop();
-            }
-            // same thing, for []
-            else if (input[i] === '[') {
-                operators.push(input[i]);
-            }
-            else if (input[i] === ']') {
-                while (operators.length && operators[operators.length - 1] !== '[') {
-                    values.push(applyOperator(operators.pop(), values.pop(), values.pop()));
+                // returns val of current number
+                else if (isDigit(expression[i])) {
+                    let val = 0;
+                    let decimal = 0;
+                    let tens = 10;
+                    while (i < expression.length && (isDigit(expression[i]) || expression[i] == '.')) {
+                        // expression[i] is .
+                        if (expression[i] === '.') {
+                            decimal = 1;
+                        }
+                        else if (isDigit(expression[i]) && decimal === 0) {
+                            val = (val * 10) + (expression[i] - '0');
+                        }
+                        else if (isDigit(expression[i]) && decimal === 1) {
+                            val += expression[i] / tens;
+                            tens *= 10;
+                        }
+                        ++i;
+                    }
+                    values.push(val);
+                    --i;
                 }
-                operators.pop();
-            }
-            // same thing, for {}
-            else if (input[i] === '{') {
-                operators.push(input[i]);
-            }
-            else if (input[i] === '}') {
-                while (operators.length && operators[operators.length - 1] !== '{') {
-                    values.push(applyOperator(operators.pop(), values.pop(), values.pop()));
+                else if (expression[i] === '(') {
+                    if (i > 0 && isDigit(expression[i - 1])) {
+                        operators.push('*');
+                    }
+                    operators.push(expression[i]);
                 }
-                operators.pop();
-            }
-            // does multiplication before adding to operator stack
-            else {
-                while (operators.length && pemdas(operators[operators.length - 1]) >= pemdas(input[i])) {
-                    values.push(applyOperator(operators.pop(), values.pop(), values.pop()));
+                // calculates expression inside parentheses
+                else if (expression[i] === ')') {
+                    while (operators.length && operators[operators.length - 1] !== '(') {
+                        values.push(applyOperator(operators.pop(), values.pop(), values.pop()));
+                    }
+                    operators.pop();
+                    if (i < expression.length && expression[i + 1] === '(') operators.push('*');
                 }
-                operators.push(input[i]);
+                // does multiplication before adding to operator stack
+                else {
+                    while (operators.length && pemdas(operators[operators.length - 1]) >= pemdas(expression[i])) {
+                        values.push(applyOperator(operators.pop(), values.pop(), values.pop()));
+                    }
+                    operators.push(expression[i]);
+                }
+                ++i;
             }
-            ++i;
+            // calculates remaining elements in stacks
+            while (operators.length) {
+                values.push(applyOperator(operators.pop(), values.pop(), values.pop()));
+            }
+            // last element in value stack is answer
+            return values.pop();
         }
-        // calculates remaining elements in stacks
-        while (operators.length) {
-            values.push(applyOperator(operators.pop(), values.pop(), values.pop()));
+
+        // throws error if expression has invalid characters
+        if (!validExpression(expression)) {
+            throw new Error("Expression has invalid characters");
         }
-        // last element in value stack is answer
-        return values.pop();
+
+        // throws error if expression has invalid parentheses
+        if (!validParentheses(expression)) {
+            throw new Error("Expression has invalid parentheses");
+        }
+
+        let answer = evaluate(expression);
+        if (printResult) document.getElementById("answer").textContent = `Result: ${answer}`;
+        return answer;
     }
-
-    // throws error if input has invalid characters
-    if (!validInput(input)) {
-        throw new Error("input has invalid characters");
+    catch (error) {
+        if (printResult) document.getElementById("answer").textContent = `${error.message}`;
+        return null;
     }
-
-    // throws error if input has invalid parentheses
-    if (!validParentheses(input)) {
-        throw new Error("input has invalid parentheses");
-    }
-
-    return evaluate(input);
 }
-
-try {
-    var answer = calculate(input);
-    document.getElementById("answer").textContent = `result: $(answer)`;
-}
-catch (error) {
-    document.getElementById("answer").textContent = `invalid expression`;
-}
-
-const input = document.getElementById("input").value;
