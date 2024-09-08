@@ -83,6 +83,9 @@ function drawCoordinates(ctx, coords, width, height) {
             }
             lastPoint = {x: canvasX, y: canvasY};
         }
+        else {
+            lastPoint = null;
+        }
     });
 
     // Stroke the line connecting the points
