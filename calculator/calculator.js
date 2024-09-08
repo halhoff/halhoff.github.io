@@ -80,7 +80,6 @@ function calculate(expression, printResult) {
                     }
                     else {
                         while (i < expression.length && (isDigit(expression[i]) || expression[i] == '.')) {
-                            // expression[i] is .
                             if (expression[i] === '.') {
                                 decimal = 1;
                             }
@@ -98,10 +97,14 @@ function calculate(expression, printResult) {
                     --i;
                 }
                 // returns val of current number
-                else if (isDigit(expression[i])) {
+                else if (isDigit(expression[i]) || expression[i] === '.') {
                     let val = 0;
                     let decimal = 0;
                     let tens = 10;
+                    if (expression[i] === '.') {
+                        decimal = 1;
+                        ++i;
+                    }
                     while (i < expression.length && (isDigit(expression[i]) || expression[i] == '.')) {
                         // expression[i] is .
                         if (expression[i] === '.') {
@@ -147,7 +150,8 @@ function calculate(expression, printResult) {
                 values.push(applyOperator(operators.pop(), values.pop(), values.pop()));
             }
             // last element in value stack is answer
-            return values.pop();
+            let finalanswer = values.pop();
+            return parseFloat(finalanswer.toFixed(5));
         }
 
         // throws error if expression has invalid characters
