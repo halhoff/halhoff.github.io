@@ -1,0 +1,3 @@
+[submodule "graphing-calculator"]
+	path = graphing-calculator
+	url = https://github.com/halhoff/graphing-calculator.git
