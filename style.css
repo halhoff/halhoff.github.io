@@ -1,6 +1,12 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('Montserrat.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
     background-color: white;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: 'Montserrat'
 }
 .top-text {
     text-align: center;
@@ -8,18 +14,18 @@ body {
     font-size: 30px;
 }
 .projects {
-    width: 200px;
+    width: 500px;
     margin: auto;
     margin-top: 300px;
     text-align: left;
-    font-size: 20px;
+    font-size: 30px;
     border: 1px solid rgba(128, 128, 128, 0.5);
     border-radius: 5px;
     padding: 10px;
     box-sizing: border-box;
 }
 .button {
-    margin: 10px 0;
+    margin: 10px;
 }
 .box {
     display: block;
@@ -31,10 +37,11 @@ body {
     font-weight: bold;
 }
 .box .material-icons {
+    font-size: 40px;
     vertical-align: middle;
     margin-right: 5px;
 }
-.divider-container {
+/* .divider-container {
     margin: 0 -10px;
 }
 .divider {
@@ -42,4 +49,4 @@ body {
     border-top: 1px solid rgba(128, 128, 128, 0.5);
     margin: 0;
     width: 100%;
-}
+} */
