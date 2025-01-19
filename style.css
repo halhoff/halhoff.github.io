@@ -51,6 +51,9 @@ a:not(.projects a):after {
 .button {
     margin: 10px;
 }
+.box:hover {
+    background-color: rgba(128, 128, 128, 0.6);
+}
 .box {
     display: block;
     background-color: rgb(200, 200, 200);
@@ -65,12 +68,3 @@ a:not(.projects a):after {
     vertical-align: middle;
     margin-right: 5px;
 }
-/* .divider-container {
-    margin: 0 -10px;
-}
-.divider {
-    border: none;
-    border-top: 1px solid rgba(128, 128, 128, 0.5);
-    margin: 0;
-    width: 100%;
-} */
