@@ -1,6 +1,0 @@
-[submodule "graphing-calculator"]
-	path = graphing-calculator
-	url = https://github.com/halhoff/graphing-calculator.git
-[submodule "snake-game"]
-	path = snake-game
-	url = https://github.com/halhoff/snake-game.git
