@@ -27,7 +27,6 @@ export default function App() {
               Feel free to explore my projects below.
               The source code for these and other projects is available on my <a className="relative group" href="https://github.com/halhoff">GitHub<span className="absolute inset-x-0 bottom-0 h-[2px] bg-[rgba(89,186,255,0.5)] group-hover:h-[100%] transition-all duration-300 ease-[cubic-bezier(0,0.8,0.13,1)]"></span>
 </a>.
-
           </div>
           <div className="mt-16 text-left p-2">
           <div className="text-4xl text-center font-bold p-4 bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">Projects</div>
