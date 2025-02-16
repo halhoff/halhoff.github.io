@@ -30,7 +30,7 @@ export default function App() {
               <div className="bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent material-icons -left-10 absolute text-4xl">
                 construction
               </div>
-              Projects
+              <div className="bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">Projects</div>
             </div>
           </div>
           <div className="text-left pb-12">
@@ -68,7 +68,7 @@ export default function App() {
               <div className="bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent material-icons -left-10 absolute text-4xl">
                 description
               </div>
-              Resume
+              <div className="bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">Resume</div>
             </a>
           </div>
         </div>
