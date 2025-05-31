@@ -64,7 +64,7 @@ export default function App() {
             </div>
           </div>
           <div className="text-4xl text-center font-bold bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">
-            <a className="inline-block relative" href="resume.pdf" target="_blank" rel="noopener noreferrer">
+            <a className="inline-block relative" href="Hal-Hoffmeyer-Resume.pdf" target="_blank" rel="noopener noreferrer">
               <div className="bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent material-icons -left-10 absolute text-4xl">
                 description
               </div>
