@@ -3,7 +3,7 @@ export default class GameOfLifeLogic {
   height: number;
   grid: number[][];
 
-  constructor(width, height) {
+  constructor(width: number, height: number) {
     this.width = width;
     this.height = height;
     this.grid = this.createGrid();

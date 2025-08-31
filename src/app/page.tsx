@@ -1,36 +1,34 @@
-import React from 'react';
-import './global.css';
-import Card from './components/Card.tsx';
-import GameOfLife from './components/GameOfLife.tsx';
+import GameOfLife from './components/GameOfLife';
+import Card from './components/Card';
 
-export default function App() {
+export default function Home() {
   return (
     <div className="relative min-h-screen">
-      <GameOfLife/>
+      <GameOfLife />
       <div className="relative z-10 text-center p-16">
         <div className="font-bold">
-          <div className="text-6xl sm:text-7xl md:text-7xl lg:text-8xl xl:text-8xl bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">
+          <div className="text-6xl sm:text-7xl md:text-7xl lg:text-8xl xl:text-8xl bg-linear-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">
             Hello,
           </div>
-          <div className="mt-16 pb-1 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl bg-gradient-to-b from-white to-[rgb(100,100,100)] bg-clip-text text-transparent">
+          <div className="mt-16 pb-1 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl bg-linear-to-b from-white to-[rgb(100,100,100)] bg-clip-text text-transparent">
             my name is Hal Hoffmeyer.
           </div>
         </div>
         <div className="mt-16 flex flex-col items-center justify-center">
           <div className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl w-[80%] sm:w-[75%] md:w-[70%] lg:w-[65%] xl:w-[50%] text-left">
-              I am a computer science student at the University of Michigan, with a focus on front-end development.
-              I am proficient in C/C++, Python, Java, JavaScript, TypeScript, HTML, and CSS.
-              I also have experience with React and am currently learning Next.js.
-              <br></br><br></br>
-              Feel free to explore my projects below.
-              The source code for these and other projects is available on my <a className="relative group" href="https://github.com/halhoff">GitHub<span className="absolute inset-x-0 bottom-0 h-[2px] bg-[rgba(89,186,255,0.5)] group-hover:h-[100%] transition-all duration-300 ease-[cubic-bezier(0,0.8,0.13,1)]"></span></a>.
+            I am a computer science student at the University of Michigan, specializing in full-stack web development.
+            I am proficient in C/C++, Python, Java, JavaScript, TypeScript, and HTML/CSS, and I
+            have experience building web applications using React, Next.js, and Supabase.
+            <br></br><br></br>
+            Feel free to explore some of my projects below.
+            The source code for these and other projects is available on my <a className="relative group" href="https://github.com/halhoff">GitHub<span className="absolute inset-x-0 bottom-0 h-[2px] bg-[rgba(89,186,255,0.5)] group-hover:h-full transition-all duration-300 ease-[cubic-bezier(0,0.8,0.13,1)]"></span></a>.
           </div>
-          <div className="my-4 text-4xl text-center font-bold p-4 bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">
+          <div className="my-4 text-4xl text-center font-bold p-4 bg-linear-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">
             <div className="inline-block relative">
-              <div className="bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent material-icons -left-10 absolute text-4xl">
+              <div className="bg-linear-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent material-icons -left-10 absolute text-4xl">
                 construction
               </div>
-              <div className="bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">Projects</div>
+              <div className="bg-linear-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">Projects</div>
             </div>
           </div>
           <div className="text-left pb-12">
@@ -63,12 +61,12 @@ export default function App() {
               />
             </div>
           </div>
-          <div className="text-4xl text-center font-bold bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">
+          <div className="text-4xl text-center font-bold bg-linear-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">
             <a className="inline-block relative" href="Hal-Hoffmeyer-Resume.pdf" target="_blank" rel="noopener noreferrer">
-              <div className="bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent material-icons -left-10 absolute text-4xl">
+              <div className="bg-linear-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent material-icons -left-10 absolute text-4xl">
                 description
               </div>
-              <div className="bg-gradient-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">Resume</div>
+              <div className="bg-linear-to-b from-white to-[rgb(130,130,130)] bg-clip-text text-transparent">Resume</div>
             </a>
           </div>
         </div>
