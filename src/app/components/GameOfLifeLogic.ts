@@ -10,7 +10,7 @@ export default class GameOfLifeLogic {
   }
 
   createGrid(): number[][] {
-    let grid: number[][] = [];
+    const grid: number[][] = [];
     for (let i = 0; i < this.height; ++i) {
       grid.push([]);
       for (let j = 0; j < this.width; ++j) {

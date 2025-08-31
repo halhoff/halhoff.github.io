@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Cell({ alive }: { alive: Boolean }) {
+export default function Cell({ alive }: { alive: boolean }) {
   return (
     <div
       className={`w-4 h-4 ${alive ? 'bg-[rgb(30,30,30)]' : 'bg-black'}`}
