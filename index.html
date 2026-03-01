@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>halhoff</title>
+    <link rel="icon" href="/favicon.ico" sizes="420x420">
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #111111;
+        --muted: #5a5a5a;
+        --muted2: #8a8a8a;
+        --border: #111111;
+        --max: 800px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0a0a0a;
+          --fg: #f2f2f2;
+          --muted: #b8b8b8;
+          --muted2: #909090;
+          --border: #f2f2f2;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html { background: var(--bg); color: var(--fg); }
+
+      body {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
+        font-size: 13px;
+        line-height: 1.75;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 56px 20px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      ::selection { background: var(--fg); color: var(--bg); }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        background-image: linear-gradient(currentColor, currentColor);
+        background-size: 100% 1px;
+        background-position: 0 100%;
+        background-repeat: no-repeat;
+        padding-bottom: 1px;
+        transition: background .15s ease, color .15s ease;
+        opacity: 0.9;
+      }
+      a:hover {
+        color: var(--bg); 
+        background: var(--fg); 
+        opacity: 1;
+      }
+      a:focus-visible { outline: 2px dashed var(--fg); outline-offset: 2px; border-radius: 2px; }
+
+      h1 {
+        font-size: 20px; 
+        letter-spacing: .4px; 
+        font-weight: 600; 
+        line-height: 1.3;
+      }
+
+      h2 {
+        font-size: 15px; 
+        font-weight: 600; 
+        letter-spacing: .25px; 
+        margin-bottom: 6px; 
+        line-height: 1.4;
+        color: var(--fg);
+      }
+
+      hr { 
+        border: 0; 
+        height: 1px; 
+        background: currentColor; 
+        opacity: .1; 
+        margin: 36px 0 36px 0; 
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .links {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+      }
+
+      .indent-1 {
+        padding-left: 24px;
+        color: var(--muted);
+      }
+      
+      .indent-2 {
+        padding-left: 48px;
+        color: var(--muted2);
+      }
+
+      .indent-link {
+        padding-left: 24px;
+      }
+
+      .projects {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="header">
+          <h1>Hal Hoffmeyer</h1>
+          <div class="links">
+            <a href="mailto:halhoffmeyer@gmail.com">Email</a>
+            <a href="https://github.com/halhoff">GitHub</a>
+            <a href="https://www.linkedin.com/in/hal-hoffmeyer-214612343/">LinkedIn</a>
+            <a href="/Hal-Hoffmeyer-Resume.pdf">Resume</a>
+          </div>
+        </div>
+      </header>
+      <hr>
+      <section>
+        <h2>About</h2>
+        <p class="indent-1">I am a computer science student at the University of Michigan, specializing in software engineering and full-stack web development. I am proficient in C/C++, Python, Java, Go, JavaScript, TypeScript, and HTML/CSS, and I have experience building web applications using React, Next.js, and Supabase.</p>
+      </section>
+      <hr>
+      <section>
+        <h2>Personal Projects</h2>
+        <div class="projects" id="personal-projects"></div>
+        <p class="indent-1" style="margin-top: 24px">Source code: <a href="https://github.com/halhoff">github.com/halhoff</a></p>
+      </section>
+      <hr>
+      <section>
+        <h2>Academic Projects</h2>
+        <div class="projects" id="academic-projects"></div>
+      </section>
+    </main>
+    <script>
+      const personalProjects = document.getElementById("personal-projects")
+      const academicProjects = document.getElementById("academic-projects")
+      fetch("/projects.json")
+        .then((response) => {
+          if (!response.ok) throw Error(response.status)
+          return response.json()
+        })
+        .then((data) => {
+          personalProjects.innerHTML = data.personal.map((project) => `
+            <div>
+            ${project.link ? 
+            `<p class="indent-link"><a href="${project.link}">${project.name}</a></p>`
+          : `<p class="indent-1">${project.name}</p>`}
+            ${project.subtitle.map(subtitle => `<p class="indent-2">${subtitle}</p>`).join("")}
+            </div>
+          `).join("")
+          academicProjects.innerHTML = data.academic.map((project) => `
+            <div>
+            <p class="indent-1">${project.name}</p>
+            ${project.subtitle.map(subtitle => `<p class="indent-2">${subtitle}</p>`).join("")}
+            </div>
+          `).join("")
+        })
+        .catch((error) => {
+          console.log(error)
+          const errorMsg = `<p class="indent-1" style="color: red">Failed to load projects</p>`
+          personalProjects.innerHTML = errorMsg
+          academicProjects.innerHTML = errorMsg
+        })
+    </script>
+  </body>
+</html>

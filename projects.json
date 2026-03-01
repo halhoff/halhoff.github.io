@@ -1,0 +1,42 @@
+{
+  "personal": [
+    {
+      "name": "Minesweeper",
+      "link": "https://halhoff.github.io/minesweeper-react",
+      "subtitle": ["Game of Minesweeper built in React", "Three board sizes"]
+    },
+    {
+      "name": "Snake",
+      "link": "https://halhoff.github.io/snake-js",
+      "subtitle": ["Snake game built in JavaScript", "Variable number of apples"]
+    },
+    {
+      "name": "Graphing Calculator",
+      "link": "https://halhoff.github.io/graphing-calculator",
+      "subtitle": ["Simplifies expressions and graphs functions"]
+    },
+    {
+      "name": "LaTeX Generator",
+      "link": "https://halhoff.github.io/latex-generator",
+      "subtitle": ["Generates code for matrices in LaTeX"]
+    },
+    {
+      "name": "Pong Clock",
+      "subtitle": ["Self-playing pong game in C", "Displays current time using seven-segment display"]
+    }
+  ],
+  "academic": [
+    {
+      "name": "Distributed MapReduce Framework",
+      "subtitle": ["MapReduce system in Go", "Sends map and reduce tasks via RPC"]
+    },
+    {
+      "name": "ICU Patient Mortality Prediction",
+      "subtitle": ["Trained a scikit classifier to predict ICU patient mortality", "Created custom feature pipeline"]
+    },
+    {
+      "name": "Assembly Simulator",
+      "subtitle": ["C program that simulates assembly code"]
+    }
+  ]
+}
