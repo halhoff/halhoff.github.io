@@ -49,6 +49,14 @@
   ],
   "academic": [
     {
+      "name": "Sharded Key/Value Store",
+      "subtitle": [
+        "Key/Value store in Go",
+        "Fault-tolerant design using Paxos groups",
+        "Shard master for shard rebalancing"
+      ]
+    },
+    {
       "name": "Distributed MapReduce Framework",
       "subtitle": [
         "MapReduce system in Go",
